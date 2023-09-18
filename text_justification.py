@@ -1,83 +1,83 @@
-68. Text Justification
-Hard
+# 68. Text Justification
+# Hard
 
-Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+# Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
 
-You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+# You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
 
-Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
+# Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
 
-For the last line of text, it should be left-justified, and no extra space is inserted between words.
+# For the last line of text, it should be left-justified, and no extra space is inserted between words.
 
-Note:
+# Note:
 
-68. Text Justification
-Hard
-3.3K
-4.3K
-Companies
-Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+# 68. Text Justification
+# Hard
+# 3.3K
+# 4.3K
+# Companies
+# Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
 
-You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+# You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
 
-Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
+# Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
 
-For the last line of text, it should be left-justified, and no extra space is inserted between words.
+# For the last line of text, it should be left-justified, and no extra space is inserted between words.
 
-Note:
+# Note:
 
-A word is defined as a character sequence consisting of non-space characters only.
-Each word's length is guaranteed to be greater than 0 and not exceed maxWidth.
-The input array words contains at least one word.
+# A word is defined as a character sequence consisting of non-space characters only.
+# Each word's length is guaranteed to be greater than 0 and not exceed maxWidth.
+# The input array words contains at least one word.
  
 
-Example 1:
+# Example 1:
 
-Input: words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16
-Output:
-[
-   "This    is    an",
-   "example  of text",
-   "justification.  "
-]
-Example 2:
+# Input: words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16
+# Output:
+# [
+#    "This    is    an",
+#    "example  of text",
+#    "justification.  "
+# ]
+# Example 2:
 
-Input: words = ["What","must","be","acknowledgment","shall","be"], maxWidth = 16
-Output:
-[
-  "What   must   be",
-  "acknowledgment  ",
-  "shall be        "
-]
-Explanation: Note that the last line is "shall be    " instead of "shall     be", because the last line must be left-justified instead of fully-justified.
-Note that the second line is also left-justified because it contains only one word.
-Example 3:
+# Input: words = ["What","must","be","acknowledgment","shall","be"], maxWidth = 16
+# Output:
+# [
+#   "What   must   be",
+#   "acknowledgment  ",
+#   "shall be        "
+# ]
+# Explanation: Note that the last line is "shall be    " instead of "shall     be", because the last line must be left-justified instead of fully-justified.
+# Note that the second line is also left-justified because it contains only one word.
+# Example 3:
 
-Input: words = ["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"], maxWidth = 20
-Output:
-[
-  "Science  is  what we",
-  "understand      well",
-  "enough to explain to",
-  "a  computer.  Art is",
-  "everything  else  we",
-  "do                  "
-]
+# Input: words = ["Science","is","what","we","understand","well","enough","to","explain","to","a","computer.","Art","is","everything","else","we","do"], maxWidth = 20
+# Output:
+# [
+#   "Science  is  what we",
+#   "understand      well",
+#   "enough to explain to",
+#   "a  computer.  Art is",
+#   "everything  else  we",
+#   "do                  "
+# ]
  
 
-Constraints:
+# Constraints:
 
-1 <= words.length <= 300
-1 <= words[i].length <= 20
-words[i] consists of only English letters and symbols.
-1 <= maxWidth <= 100
-words[i].length <= maxWidth
-Accepted
-356.3K
-Submissions
-863.9K
-Acceptance Rate
-41.2%
+# 1 <= words.length <= 300
+# 1 <= words[i].length <= 20
+# words[i] consists of only English letters and symbols.
+# 1 <= maxWidth <= 100
+# words[i].length <= maxWidth
+# Accepted
+# 356.3K
+# Submissions
+# 863.9K
+# Acceptance Rate
+# 41.2%
 
 
 class Solution:
@@ -89,7 +89,7 @@ class Solution:
 
         lines = []
         i = 0
-        # step 1 put them on lines, aligned left, ignore last element for now
+        # Step 1 put them on lines, align left, and ignore the last element for now
         while i <len(words)-1:
             if words[i] == maxWidth:
                 lines.append([words[i]])
@@ -99,7 +99,7 @@ class Solution:
                 ch_count = len(words[i])
                 remaining_chr = maxWidth
                 while ch_count <= maxWidth and i < len(words)-1:
-                    # place first word in line
+                    # Place the first word in the line
                     temp.append(words[i])
                     this_words_lenght = len(words[i])
                     remaining_chr = remaining_chr - this_words_lenght-1
@@ -108,21 +108,21 @@ class Solution:
                     if len(words[i+1]) <= remaining_chr:
                         # add a space - now we would have 2 words 1 space
                         ch_count += len(words[i+1]) + 1
-                        # last element check -> we put it on the same line here
+                        # last element check -> We put it on the same line here
                         if i+1 == len(words)-1:
                             temp.append(words[i+1])
                             lines.append(temp)
                     else:
                         ch_count += 1 + len(words[i+1]) # space + word
                         lines.append(temp)
-                    # last element on new line
+                    # last element on a new line
                     if len(words[i+1]) > remaining_chr and i+1 == len(words)-1:
                         lines.append([words[-1]])
                     i+=1
         print(lines)
         
-        # Step 2 insert the spaces
-        # rule for all except last
+        # Step 2 Insert the spaces
+        # rule for all except the last
         output = []
         for i in range(0, len(lines)-1):
             letter_count = 0
@@ -144,7 +144,7 @@ class Solution:
             x = spaces % (len(lines[i])-1)
             string = lines[i][0]
             for j in range(1, len(lines[i])):
-                # if the indexes are lower than the delimiter of spaces
+                # If the indexes are lower than the delimiter of spaces
                 if j <=x:
                     string = string + (one_space_temp + 1) * " " + lines[i][j]
                 else:
