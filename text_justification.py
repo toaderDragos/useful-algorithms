@@ -3,24 +3,11 @@
 
 # Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
 
-# You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+# You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' 
+when necessary so that each line has exactly maxWidth characters.
 
-# Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
-
-# For the last line of text, it should be left-justified, and no extra space is inserted between words.
-
-# Note:
-
-# 68. Text Justification
-# Hard
-# 3.3K
-# 4.3K
-# Companies
-# Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
-
-# You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
-
-# Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
+# Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, 
+the empty slots on the left will be assigned more spaces than the slots on the right.
 
 # For the last line of text, it should be left-justified, and no extra space is inserted between words.
 
@@ -28,7 +15,7 @@
 
 # A word is defined as a character sequence consisting of non-space characters only.
 # Each word's length is guaranteed to be greater than 0 and not exceed maxWidth.
-# The input array words contains at least one word.
+# The input array words contain at least one word.
  
 
 # Example 1:
@@ -89,7 +76,7 @@ class Solution:
 
         lines = []
         i = 0
-        # Step 1 put them on lines, align left, and ignore the last element for now
+        # Step 1 put the words on their respective lines, align left, and ignore the last element for now
         while i <len(words)-1:
             if words[i] == maxWidth:
                 lines.append([words[i]])
@@ -98,17 +85,22 @@ class Solution:
                 temp = []
                 ch_count = len(words[i])
                 remaining_chr = maxWidth
+             
+                # Taking into consideration all elements except the last
                 while ch_count <= maxWidth and i < len(words)-1:
+                 
                     # Place the first word in the line
                     temp.append(words[i])
                     this_words_lenght = len(words[i])
-                    remaining_chr = remaining_chr - this_words_lenght-1
+                    remaining_chr = remaining_chr - this_words_lenght - 1
 
-                    # do we have space for another (use <= !!) or not?
+                    # Do we have space for another word or not? (use <= !! because we may have the exact number of chars as the line width) 
                     if len(words[i+1]) <= remaining_chr:
-                        # add a space - now we would have 2 words 1 space
+                     
+                        # Add a space - now we would have 2 words 1 space
                         ch_count += len(words[i+1]) + 1
-                        # last element check -> We put it on the same line here
+                     
+                        # Last element check -> We put it on the same line here
                         if i+1 == len(words)-1:
                             temp.append(words[i+1])
                             lines.append(temp)
@@ -138,9 +130,10 @@ class Solution:
                 
             spaces = maxWidth - letter_count
             
-            # number of spaces should be divided by nr. words - 1
+            # The number of spaces should be divided by nr. words - 1
             one_space_temp = spaces// (len(lines[i]) - 1)
-            # more spaces are until the x th usage
+         
+            # More spaces are until the x th usage
             x = spaces % (len(lines[i])-1)
             string = lines[i][0]
             for j in range(1, len(lines[i])):
@@ -151,7 +144,7 @@ class Solution:
                     string = string + one_space_temp * " " + lines[i][j]
             output.append(string)
 
-        # the last line
+        # The last line - first if we have a single word we fill everything else with spaces
         if len(lines[-1]) == 1:
             lstring = lines[-1][0] + (maxWidth - len(lines[-1][0])) * " "
 
@@ -159,7 +152,7 @@ class Solution:
             lstring = lines[-1][0]
             count = len(lines[-1][0])
             for j in range(1, len(lines[-1])):
-                count += len(lines[-1][j]) + 1    # because you add a space
+                count += len(lines[-1][j]) + 1    # Because you add a space you add 1
                 lstring += " " + lines[-1][j]
 
             dif = maxWidth - count
